@@ -58,7 +58,6 @@ int main(int argc, char** argv) {
 	memset(outputCpuSSD.data(), 255, config.getKernelParameter().size);
 
 	//	Read input images and set the data in respective buffers
-
 	std::vector<float> readLeftImage;
 	std::vector<float> readRightImage;
 
@@ -76,10 +75,10 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	//CPU Implementation
+	// when i = 0 -> SAD : i = 1 -> SSD
 	for (int i = 0; i < 2; i++)
 	{
-
+		//CPU Implementation invocation
 		std::cout << "-----------	CPU Execution Started" << ((i == 0) ? " -> SAD " : " -> SSD ") << "	----------- \n" << std::endl;
 		Core::TimeSpan cpuStartTime = Core::getCurrentTime();
 
@@ -95,7 +94,7 @@ int main(int argc, char** argv) {
 		Core::writeImagePGM(name, outputCpuSSD, config.getKernelParameter().countX, config.getKernelParameter().countY);
 
 
-		// when i = 0 -> SAD : i = 1 -> SSD
+		//GPU Implementation invocation
 		std::cout << "-----------	GPU Execution Start" << ((i == 0) ? " -> SAD " : " -> SSD ") << "	----------- \n" << std::endl;
 
 		config.setCLFilePath("DisparityMap.cl");
@@ -108,24 +107,5 @@ int main(int argc, char** argv) {
 		std::cout << "************************************************************\n"<< std::endl;
 
 	}
-
-	////Store output Image -- CPU
-	//Core::writeImagePGM("disparitymap_cpu.pgm", outputCpuSSD, config.getKernelParameter().countX, config.getKernelParameter().countY);
-
-	//std::cout << "CPU Execution Time : " << cpuExecutionTime << std::endl;
-
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	// when i = 0 -> SAD : i = 1 -> SSD
-	//	std::cout << "------- GPU Execution Start" << ((i == 0) ? "SAD" : "SSD") << "------ - " << std::endl;
-
-	//	config.setCLFilePath("DisparityMap.cl");
-	//	Core::TimeSpan gpuExecutionTime = config.executeKernel(outputCpuSSD, inputLeftImage, inputRightImage, i);
-
-	//	//std::cout << "GPU Speedup over CPU : " << cpuExecutionTime.getSeconds() / gpuExecutionTime.getSeconds() << std::endl;
-	//	std::cout << "------- GPU Execution End" << ((i == 0) ? "SAD" : "SSD") << "------ - " << std::endl;
-	//}
-	//
-	//std::cout << "Success" << std::endl;
 
 }
