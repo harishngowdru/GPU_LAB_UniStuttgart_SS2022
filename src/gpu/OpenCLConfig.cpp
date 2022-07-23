@@ -117,13 +117,13 @@ Core::TimeSpan OpenCLConfig::executeKernel(std::vector<float>& outputGpuSSD, std
 	std::string name = "disparitymap_" + std::string((isSSD ? "SAD" : "SSD")) + "_gpu.pgm";
 	Core::writeImagePGM(name, outputGpuSSD, kernelParameter.countX, kernelParameter.countY);
 
-	//// Print performance data
+	// Print performance data
 	Core::TimeSpan gpuStartTime = OpenCL::getElapsedTime(kernelExecution);
 	Core::TimeSpan readWriteTime = OpenCL::getElapsedTime(writeEvent) + OpenCL::getElapsedTime(readEvent);
 	Core::TimeSpan gpuExecutionTime = gpuStartTime + readWriteTime;
 
 	std::cout << "		GPU Read/Write Time : " << readWriteTime.toString() << std::endl;
-	std::cout << "		GPU Execution Time : " << gpuExecutionTime.toString() << std::endl;
+	std::cout << "		GPU Execution Time : " << gpuExecutionTime.toString() <<"\n"<< std::endl;
 
 	return gpuExecutionTime;
 }

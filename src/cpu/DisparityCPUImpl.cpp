@@ -17,14 +17,14 @@ float getValueGlobal(const std::vector<float>& a, std::size_t countX, std::size_
 // implementation on CPU
 void DisparityMappingCPUImpl(const std::vector<float>& leftInputImage, const std::vector<float>& rightInputImage, std::vector<float>& output, size_t countX, size_t countY, int isSSD)
 {
-	int windowSize = 13;
+	int windowSize = 17;
 	int windowRange = windowSize / 2;
 
 	float value = 0.0;
-	float min = 10000.0;
+	float min = 8000.0;
 
 	float totaldisparity = 0.0;
-	int disparityMax = 100;
+	int disparityMax = 70;
 	
 
 	for (int i = 0; i < (int)countX; i++)

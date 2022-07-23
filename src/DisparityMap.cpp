@@ -63,8 +63,8 @@ int main(int argc, char** argv) {
 
 	std::size_t leftImageWidth, leftImageHeight, rightImageWidth, rightImageHeight;
 
-	Core::readImagePGM("images/Bowling_Left.pgm", readLeftImage, leftImageWidth, leftImageHeight);
-	Core::readImagePGM("images/Bowling_Right.pgm", readRightImage, rightImageWidth, rightImageHeight);
+	Core::readImagePGM("images/Decoration_Left.pgm", readLeftImage, leftImageWidth, leftImageHeight);
+	Core::readImagePGM("images/Decoration_Right.pgm", readRightImage, rightImageWidth, rightImageHeight);
 
 	for (size_t j = 0; j < config.getKernelParameter().countY; j++)
 	{

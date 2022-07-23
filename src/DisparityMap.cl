@@ -48,12 +48,12 @@ __kernel void disparityMap(__read_only image2d_t leftImage, __read_only image2d_
 	size_t countX = get_global_size(0);
 	size_t countY = get_global_size(1);
 
-	int windowSize = 13;
+	int windowSize = 17;
 	int windowRange = windowSize / 2;
 	float value = 0.0;
-	float min = 10000.0;
+	float min = 8000.0;
 	float disparityintotal = 0.0;
-	int disparityMax = 100;
+	int disparityMax = 70;
 	float temp;
 
 	for (int disparity = 0; disparity <= disparityMax; disparity++)
